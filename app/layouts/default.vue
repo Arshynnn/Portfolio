@@ -2,8 +2,7 @@
 
 <template>
   <div>
-    <app-header />
-    <p>Some default layout content shared across all pages</p>
+    <template-hero />
     <slot />
     <app-footer />
   </div>

@@ -1,7 +1,0 @@
-<script setup lang="ts"></script>
-
-<template>
-  <header>
-    <h2>Header</h2>
-  </header>
-</template>
