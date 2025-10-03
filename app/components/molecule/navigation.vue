@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { frame, motion, type SpringOptions, useMotionValue, useSpring } from 'motion-v';
+const emitCursorHover = (hovering: boolean) => {
+  window.dispatchEvent(new CustomEvent('cursor-hover', {
+    detail: { hovering }
+  }))
+}
 </script>
 
 <template>
@@ -10,10 +14,14 @@ import { frame, motion, type SpringOptions, useMotionValue, useSpring } from 'mo
       <li>Projects</li>
     </ul>
 
-    <div class="border-l border-dashed border-gray-700 h-20 w-50 flex items-end">
-      <button class="bg-violet-600 py-4 px-8 text-xl">
-        Reach me
-      </button>
+    <div class="border-l border-dashed border-gray-700 h-25 w-55 flex items-end">
+      <atom-sticky-element>
+        <button class="bg-violet-600 py-5 px-10 text-xl flex gap-4" @mouseenter="emitCursorHover(true)"
+          @mouseleave="emitCursorHover(false)">
+          <img src="/assets/icons/send.svg" alt="" class="" />
+          Reach me
+        </button>
+      </atom-sticky-element>
     </div>
   </nav>
 </template>

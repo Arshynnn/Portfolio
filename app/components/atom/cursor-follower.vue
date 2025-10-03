@@ -1,41 +1,47 @@
 <script setup lang="ts">
-type Position = { x: number; y: number };
+import { Motion, useMotionValue, useSpring } from 'motion-v'
 
-const mousePos = ref<Position>({ x: 0, y: 0 });
-const followerPos = ref<Position>({ x: 0, y: 0 });
+const mouseX = useMotionValue(0)
+const mouseY = useMotionValue(0)
 
-let rafId: number | null = null;
+const cursorX = useSpring(mouseX, { stiffness: 150, damping: 15, mass: 0.1 })
+const cursorY = useSpring(mouseY, { stiffness: 150, damping: 15, mass: 0.1 })
+
+const scale = useMotionValue(1)
+const cursorScale = useSpring(scale, { stiffness: 300, damping: 20 })
 
 const handleMouseMove = (e: MouseEvent) => {
-  mousePos.value = { x: e.clientX, y: e.clientY };
-};
+  mouseX.set(e.clientX)
+  mouseY.set(e.clientY)
+}
 
-const animate = (): void => {
-  followerPos.value = {
-    x: followerPos.value.x + (mousePos.value.x - followerPos.value.x) * 0.1,
-    y: followerPos.value.y + (mousePos.value.y - followerPos.value.y) * 0.1,
-  };
-  rafId = requestAnimationFrame(animate);
-};
+const handleCursorHover = (e: CustomEvent) => {
+  scale.set(e.detail.hovering ? 2 : 1)
+}
 
 onMounted(() => {
-  window.addEventListener("mousemove", handleMouseMove);
-  animate();
-});
+  window.addEventListener('mousemove', handleMouseMove)
+  window.addEventListener('cursor-hover', handleCursorHover as EventListener)
+})
 
 onUnmounted(() => {
-  window.removeEventListener("mousemove", handleMouseMove);
-  if (rafId !== null) cancelAnimationFrame(rafId);
-});
+  window.removeEventListener('mousemove', handleMouseMove)
+  window.removeEventListener('cursor-hover', handleCursorHover as EventListener)
+})
 </script>
 
 <template>
-  <div
-    :class="['fixed pointer-events-none z-50 w-10 h-10 rounded-full mix-blend-difference bg-white']"
+  <Motion
+    tag="div"
+    class="fixed pointer-events-none z-50 w-10 h-10 rounded-full mix-blend-difference bg-white"
     :style="{
-      left: `${followerPos.x}px`,
-      top: `${followerPos.y}px`,
-      transform: 'translate(-50%, -50%)',
+      left: 0,
+      top: 0,
+      x: cursorX,
+      y: cursorY,
+      scale: cursorScale,
+      translateX: '-50%',
+      translateY: '-50%',
     }"
   />
 </template>
