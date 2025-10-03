@@ -2,8 +2,7 @@
 
 <template>
   <div>
-    <template-hero />
     <slot />
-    <app-footer />
+    <!-- <organism-app-footer /> -->
   </div>
 </template>
