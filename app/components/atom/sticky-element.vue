@@ -2,8 +2,8 @@
 import { frame, motion, type SpringOptions, useMotionValue, useSpring } from 'motion-v'
 
 const props = withDefaults(defineProps<{ amplitude?: number, spring?: SpringOptions }>(), {
-  amplitude: 10,
-  spring: () => <SpringOptions>{ stiffness: 2000, damping: 50 }
+  amplitude: 20,
+  spring: () => <SpringOptions>{ stiffness: 1000, damping: 50 }
 });
 
 const elementRef = ref<{ $el: HTMLElement } | null>(null);
