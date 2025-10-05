@@ -9,8 +9,8 @@ const props = withDefaults(
     scaleAmplitude?: number;
   }>(),
   {
-    size: "60vw",
-    blur: 30,
+    size: "20vw",
+    blur: 70,
     scaleAmplitude: 0.2,
   }
 );
@@ -100,7 +100,7 @@ onUnmounted(() => {
   height: v-bind(size);
   transform-origin: center !important;
   filter: blur(0px);
-  border-radius: 50%;
+  border-radius: 40%;
   background: linear-gradient(var(--color-violet-600), var(--color-rose-600));
   animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
   /* z-index: -100 !important; */
