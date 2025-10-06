@@ -9,7 +9,7 @@ const props = withDefaults(
     scaleAmplitude?: number;
   }>(),
   {
-    size: "20vw",
+    size: "25vw",
     blur: 70,
     scaleAmplitude: 0.2,
   }
@@ -69,7 +69,7 @@ function mouseMove(ev: MouseEvent) {
 }
 
 onMounted(() => {
-  setTimeout(() => requestAnimationFrame(morph), 400);
+  requestAnimationFrame(morph);
   window.addEventListener("mousemove", mouseMove);
 });
 
