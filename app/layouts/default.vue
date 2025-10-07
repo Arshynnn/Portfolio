@@ -1,23 +1,5 @@
 <script setup lang="ts">
-const { height: windowHeight } = useWindowSize();
-const { y: scrollY } = useWindowScroll();
-
-const width = ref(1024);
-const maxWidth = ref(1536);
-
-const updateDimensions = () => {
-  const scrollPosition = scrollY.value;
-  const documentHeight = document.documentElement.scrollHeight;
-  const maxScroll = documentHeight - windowHeight.value;
-  const scrollPercent = Math.min(scrollPosition / Math.max(maxScroll, 1), 1);
-
-  const minWidth = 768;
-
-  width.value = minWidth + (maxWidth.value - minWidth) * scrollPercent;
-};
-
-watch(scrollY, updateDimensions);
-onMounted(updateDimensions);
+const { width } = useBorders();
 </script>
 
 <template>
@@ -36,7 +18,5 @@ onMounted(updateDimensions);
     <div class="w-full mx-auto flex flex-col transition-all duration-300 ease-out" :style="{ maxWidth: `${width}px` }">
       <slot />
     </div>
-
-    <organism-app-footer />
   </div>
 </template>

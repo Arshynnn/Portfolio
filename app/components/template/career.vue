@@ -69,7 +69,7 @@ onMounted(() => {
           </div>
 
           <ul class="timeline p-4 h-full flex flex-col-reverse justify-end gap-2">
-            <li v-for="i in 24">{{ i.toString().padStart(2, '0') }}</li>
+            <li v-for="i in 24" :key="i">{{ i.toString().padStart(2, '0') }}</li>
           </ul>
         </div>
       </div>

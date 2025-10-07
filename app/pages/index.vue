@@ -7,6 +7,5 @@
     <template-about />
     <template-career />
     <template-projects />
-    <section class="w-full min-h-screen bg-gray-900"></section>
   </div>
 </template>

@@ -9,7 +9,7 @@ const props = withDefaults(
     scaleAmplitude?: number;
   }>(),
   {
-    size: "25vw",
+    size: "30vw",
     blur: 70,
     scaleAmplitude: 0.2,
   }
@@ -65,7 +65,7 @@ function mouseMove(ev: MouseEvent) {
   const rect = blobEl.value.$el.getBoundingClientRect();
   const deltaX = ev.clientX - (rect.left + rect.width / 2);
   const deltaY = ev.clientY - (rect.top + rect.height / 2);
-  smoothAngle.value = getSmoothAngle(Math.atan2(deltaY, deltaX));
+  smoothAngle.value = getSmoothAngle(Math.atan2(deltaY, deltaX)) * 0.25;
 }
 
 onMounted(() => {
@@ -87,7 +87,7 @@ onUnmounted(() => {
       ref="blobEl"
       tag="div"
       class="blob"
-      :animate="{ rotate: `${smoothAngle}rad`, transition: { duration: 2 } }"
+      :animate="{ rotate: `${smoothAngle}rad`, transition: { duration: 4 } }"
     />
   </div>
 </template>
