@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  modules: ["motion-v/nuxt", "@vueuse/nuxt", "@nuxt/fonts"],
+  modules: ["motion-v/nuxt", "lenis/nuxt", "@vueuse/nuxt", "@nuxt/fonts"],
 
   css: ['~/assets/css/main.css'],
 

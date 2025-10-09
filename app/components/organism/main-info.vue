@@ -21,18 +21,22 @@ const emitCursorHover = (hovering: boolean) => {
       </div>
     </div>
     <div class="ml-auto flex items-end gap-4">
-      <div class="flex items-center gap-8 p-4"
-        @mouseenter="emitCursorHover(true)" @mouseleave="emitCursorHover(false)"
-      >
-        <button>
-          <img src="/assets/icons/linkedin.svg" class="w-6 h-6" alt="linkedin">
-        </button>
-        <button>
-          <img src="/assets/icons/github.svg" class="w-6 h-6" alt="github">
-        </button>
-        <button>
-          <img src="/assets/icons/telegram.svg" class="w-6 h-6" alt="telegram">
-        </button>
+      <div class="flex items-center gap-8 p-4" @mouseenter="emitCursorHover(true)" @mouseleave="emitCursorHover(false)">
+        <a href="">
+          <button>
+            <img src="/assets/icons/linkedin.svg" class="w-6 h-6" alt="linkedin">
+          </button>
+        </a>
+        <a href="">
+          <button>
+            <img src="/assets/icons/github.svg" class="w-6 h-6" alt="github">
+          </button>
+        </a>
+        <a href="">
+          <button>
+            <img src="/assets/icons/telegram.svg" class="w-6 h-6" alt="telegram">
+          </button>
+        </a>
       </div>
       <div class="w-80 overflow-hidden">
         <img src="/images/image.jpg" alt="" class="w-full h-full object-cover aspect-square"></img>

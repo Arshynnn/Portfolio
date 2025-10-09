@@ -1,10 +1,11 @@
 <script setup lang="ts">
 const { width } = useBorders();
+const { lenis } = useSmoothScroll();
 </script>
 
 <template>
   <div
-    class="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center bg-black text-white">
+    class="relative w-full min-h-screen overflow-x-hidden flex flex-col items-center justify-center bg-black text-white">
     <div class="fixed inset-0 opacity-20 z-30 pointer-events-none">
       <div v-for="i in 100" :key="`v-${i}`"
         class="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-400/60 to-transparent"

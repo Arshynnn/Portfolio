@@ -109,15 +109,21 @@ onMounted(() => {
           <footer>
             <div class="flex items-center gap-8" @mouseenter="emitCursorHover(true)"
               @mouseleave="emitCursorHover(false)">
-              <button>
-                <img src="/assets/icons/linkedin.svg" class="w-6 h-6" alt="linkedin">
-              </button>
-              <button>
-                <img src="/assets/icons/github.svg" class="w-6 h-6" alt="github">
-              </button>
-              <button>
-                <img src="/assets/icons/telegram.svg" class="w-6 h-6" alt="telegram">
-              </button>
+              <a href="">
+                <button>
+                  <img src="/assets/icons/linkedin.svg" class="w-6 h-6" alt="linkedin">
+                </button>
+              </a>
+              <a href="">
+                <button>
+                  <img src="/assets/icons/github.svg" class="w-6 h-6" alt="github">
+                </button>
+              </a>
+              <a href="">
+                <button>
+                  <img src="/assets/icons/telegram.svg" class="w-6 h-6" alt="telegram">
+                </button>
+              </a>
             </div>
           </footer>
         </div>
@@ -141,7 +147,9 @@ onMounted(() => {
                 <h3>{{ project.name }}</h3>
                 <span class="rounded-md px-3 py-1 flex items-center gap-2 text-xs font-medium border border-gray-500">
                   {{ project.archived ? '🗃️ archived' : '🚀 shipped' }}
-                  <div :class="['w-1.5 h-1.5 rounded-full animate-pulse', project.archived ? 'bg-amber-500' : 'bg-green-500']"></div>
+                  <div
+                    :class="['w-1.5 h-1.5 rounded-full animate-pulse', project.archived ? 'bg-amber-500' : 'bg-green-500']">
+                  </div>
                 </span>
               </div>
               <p class="text-gray-500 text-sm/tight">
