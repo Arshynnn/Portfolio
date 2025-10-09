@@ -9,7 +9,7 @@ const props = withDefaults(
     scaleAmplitude?: number;
   }>(),
   {
-    size: "30vw",
+    size: "32vw",
     blur: 70,
     scaleAmplitude: 0.2,
   }

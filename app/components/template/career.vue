@@ -1,16 +1,25 @@
 <script setup lang="ts">
 const { topEdge, bottomEdge } = useBorders();
 
-const isVisible = ref(false);
 const sectionRef = ref<HTMLElement | null>(null);
 const visibleItems = ref<number[]>([]);
+const isVisible = ref(false);
+let timeouts: number[] = [];
+
+function clearTimers() {
+  timeouts.forEach((t) => clearTimeout(t));
+  timeouts = [];
+}
 
 function animateTimeline() {
   visibleItems.value = [];
+  clearTimers();
+
   for (let i = 1; i <= 32; i++) {
-    setTimeout(() => {
+    const timer = window.setTimeout(() => {
       visibleItems.value.push(i);
     }, i * 80);
+    timeouts.push(timer);
   }
 }
 
@@ -19,8 +28,16 @@ onMounted(() => {
     (entries) => {
       const entry = entries[0];
       if (entry && entry.isIntersecting) {
-        isVisible.value = true;
-        animateTimeline();
+        if (!isVisible.value) {
+          isVisible.value = true;
+          animateTimeline();
+        }
+      } else {
+        if (isVisible.value) {
+          isVisible.value = false;
+          clearTimers();
+          visibleItems.value = [];
+        }
       }
     },
     { threshold: 0.3 }
@@ -30,6 +47,7 @@ onMounted(() => {
 
   onUnmounted(() => {
     observer.disconnect();
+    clearTimers();
   });
 });
 </script>
@@ -55,7 +73,7 @@ onMounted(() => {
               </transition-group>
             </ul>
 
-            <ul class="relative w-full pl-8.5 space-y-10">
+            <ul class="relative w-full max-h-screen overflow-hidden pl-8.5 space-y-10">
               <div class="absolute left-4 w-[1px] h-full bg-gradient-to-b via-gray-500/80 to-transparent"></div>
               <li
                 class="before:content-['01.'] before:mr-2 before:border before:rounded-full before:w-9 before:h-9 before:flex before:items-center before:justify-center flex items-start">
