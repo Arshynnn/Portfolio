@@ -137,7 +137,13 @@ onMounted(() => {
                 class="absolute top-4 right-4 transition-all duration-300 group-hover:top-2 group-hover:right-2">
                 <img src="/assets/icons/arrow-up-right.svg" alt="visit" />
               </a>
-              <h3>{{ project.name }}</h3>
+              <div class="flex flex-col items-start">
+                <h3>{{ project.name }}</h3>
+                <span class="rounded-md px-3 py-1 flex items-center gap-2 text-xs font-medium border border-gray-500">
+                  {{ project.archived ? '🗃️ archived' : '🚀 shipped' }}
+                  <div :class="['w-1.5 h-1.5 rounded-full animate-pulse', project.archived ? 'bg-amber-500' : 'bg-green-500']"></div>
+                </span>
+              </div>
               <p class="text-gray-500 text-sm/tight">
                 {{ project.description }}
               </p>

@@ -5,9 +5,9 @@ const isVisible = ref(false);
 const sectionRef = ref<HTMLElement | null>(null);
 
 const activities = [
-  { word: "Snoozing", img: "/images/image.jpg" },
-  { word: "Training", img: "/images/image.jpg" },
-  { word: "Reading", img: "/images/image.jpg" },
+  { word: "Snoozing", img: "/images/about/sleeping.jpg" },
+  { word: "Training", img: "/images/about/training.gif" },
+  { word: "Reading", img: "/images/about/reading.png" },
 ] as const;
 
 const currentIndex = ref(0);
@@ -37,7 +37,7 @@ onMounted(() => {
 
   intervalId = window.setInterval(() => {
     currentIndex.value = (currentIndex.value + 1) % activities.length;
-  }, 3000);
+  }, 4000);
 
   onUnmounted(() => {
     observer.disconnect();
@@ -93,8 +93,7 @@ onMounted(() => {
         <div class="flex flex-col justify-end row-start-2">
           <h2 class="text-4xl font-bold mb-4">About Me</h2>
           <p class="text-lg text-gray-300 leading-relaxed max-w-md">
-            I'm a passionate developer focused on creating clean, interactive, and performant web
-            applications. I love experimenting with frontend technologies and bringing ideas to life.
+            Web dev, design, and a bit of chaos — I like creating stuff that feels good to use.
           </p>
         </div>
       </div>
