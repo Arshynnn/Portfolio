@@ -10,12 +10,12 @@ export const useSmoothScroll = () => {
 
   onMounted(() => {
     lenis.value = new Lenis({
-      duration: 1.2,
+      duration: 1.8,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 0.8,
       touchMultiplier: 2,
       infinite: false,
     })
@@ -27,7 +27,7 @@ export const useSmoothScroll = () => {
     lenis.value.on('scroll', ({ scroll, velocity }: LenisScrollEvent) => {
       const now = Date.now();
 
-      if (Math.abs(velocity) < 0.1 && !isSnapping && now - lastScrollTime > 100) {
+      if (Math.abs(velocity) < 0.05 && !isSnapping && now - lastScrollTime > 100) {
         if (snapTimeout) clearTimeout(snapTimeout);
 
         snapTimeout = setTimeout(() => {
@@ -41,24 +41,21 @@ export const useSmoothScroll = () => {
           for (const section of sections) {
             const rect = section.getBoundingClientRect();
             const sectionTop = scrollPosition + rect.top;
-            const sectionMiddle = sectionTop + rect.height / 2;
-            const viewportMiddle = scrollPosition + windowHeight / 2;
-            const distance = Math.abs(sectionMiddle - viewportMiddle);
+            const distance = Math.abs(sectionTop);
 
-            if (distance < windowHeight * 0.3 && distance < closestDistance) {
+            if (distance < windowHeight * 0.5 && distance < closestDistance) {
               closestDistance = distance;
               closestSection = section;
             }
           }
 
-          if (closestSection && closestDistance < windowHeight * 0.25) {
+          if (closestSection && closestDistance < windowHeight * 0.4) {
             isSnapping = true;
             const rect = closestSection.getBoundingClientRect();
-            const targetScroll =
-              scrollPosition + rect.top - windowHeight / 2 + rect.height / 2;
+            const targetScroll = scrollPosition + rect.top;
 
             lenis.value?.scrollTo(targetScroll, {
-              duration: 0.6,
+              duration: 1.0,
               easing: (t: number) =>
                 t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
               onComplete: () => {
@@ -66,7 +63,7 @@ export const useSmoothScroll = () => {
               },
             })
           }
-        }, 150);
+        }, 200);
       }
 
       lastScrollTime = now;

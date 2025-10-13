@@ -79,7 +79,7 @@ onMounted(() => {
             </div>
 
             <div class="py-2 px-4 rounded-md bg-gray-700 rounded-tr-none">
-              <p class="truncate">I'm trying to learn new things!</p>
+              <p class="truncate">I'm trying to learn new skills!</p>
             </div>
           </div>
 
